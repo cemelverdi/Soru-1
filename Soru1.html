@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Soru 1</h1>
+    <span>1'den 99'a kadar olan sayıları yan yana</span>
+    <button id="sıralaBtn" onclick="sirala()">Sırala</button>
+    
+    <br>
+    <button id="rastgeleBtn" onclick="rastgeleSec()" disabled>Rastgele sayı seç</button>
+    <div id="sonuc"></div>
+
+    <script>
+        function sirala(){
+            var sonucEl = document.getElementById("sonuc");
+            var siralaBtn = document.getElementById("sıralaBtn");
+            var rastgeleBtn = document.getElementById("rastgeleBtn");
+
+            for (var i = 1; i <= 99; i++) {
+                var span = document.createElement("span");
+                span.id = "sayi-" + i;
+                span.innerText = i + " ";
+                sonucEl.appendChild(span);
+
+                if (i % 10 == 0) {
+                    sonucEl.innerHTML += "<br>";
+                }
+            }
+            rastgeleBtn.disabled = false;
+            siralaBtn.disabled = true; 
+        }
+
+        function rastgeleSec() {
+            
+            var oncekiSecim = document.querySelector(".selected");
+            if (oncekiSecim) {
+                oncekiSecim.classList.remove("selected");
+            }
+
+            
+            var rastgeleSayi = Math.floor(Math.random() * 99) + 1;
+            var span = document.getElementById("sayi-" + rastgeleSayi);
+            span.classList.add("selected");
+        }
+    </script>
+
+    <style>
+        .selected {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+
+</body>
+</html>
